@@ -12,7 +12,7 @@ return{
               case 'A': return resourceBundle.getText('invoicesStatusA');
               case 'B': return resourceBundle.getText('invoicesStatusB');
               case 'C': return resourceBundle.getText('invoicesStatusC');                        
-              default:return sStatus;
+              default:return resourceBundle.getText('invoicesStatusA');//sStatus;
           }
       }
 }

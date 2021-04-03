@@ -1,12 +1,20 @@
 <mvc:View controllerName="logaligroup.SAPUI5.controller.HelloPanel" 
           xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
           displayBlock="true">
-        <Panel headerText="{i18n>helloPanel}" class="sapUiResponsiveMargin" width="auto">
+        <Panel headerText="{i18n>helloPanel}" 
+               class="sapUiResponsiveMargin" 
+               width="auto"
+               expandable="{device>/system/phone}"
+               expanded="{= !${device>/system/phone} }">
              <content>
-                  <Button id="helloDialogButton"
-                          icon="sap-icon://action" text="{i18n>helloDialogBut}" 
-                          press=".onOpenDialog" class="sapUiSmallMarginEnd "/>
-                  <Button text="{i18n>showHelloButtonText}" press=".onShowHello" class="sapUiSmallMarginEnd "/>
+                  <Button id="helloDialogButton"    
+                          icon="sap-icon://action" 
+                          text="{i18n>helloDialogBut}" 
+                          press=".onOpenDialog" 
+                          class="sapUiSmallMarginEnd sapUiVisibleOnlyOnDesktop "/>
+                  <Button text="{i18n>showHelloButtonText}" 
+                          press=".onShowHello" 
+                          class="sapUiSmallMarginEnd sapUiHideOnDesktop"/>
                   <Input value="{/recipient/name}"  width="60%"  valueLiveUpdate="true"/>
                   <Text text="Hello {/recipient/name}" class="sapUiSmallMargin boldElements"/>        
              </content>     

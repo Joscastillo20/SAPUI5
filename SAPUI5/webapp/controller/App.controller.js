@@ -10,7 +10,7 @@ sap.ui.define([
         "use strict";
         return Controller.extend("logaligroup.SAPUI5.controller.App",{
            onInit: function(){
-              
+               this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());     
            },
 
            onOpenDialogHeader: function(){

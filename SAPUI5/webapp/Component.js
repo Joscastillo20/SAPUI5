@@ -3,13 +3,15 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "logaligroup/SAPUI5/model/Models",
     "sap/ui/model/resource/ResourceModel" ,
-    "./controller/HelloDialog"   
+    "./controller/HelloDialog",
+    "sap/ui/Device"  
 ],
     /**
      * @param {typeof sap.ui.core.UIComponent} UiComponent
-     * @param {typeof sap.ui.model.resorce.ResourceModel} ResourceModel  
+     * @param {typeof sap.ui.model.resorce.ResourceModel} ResourceModel
+     * @param {typeof sap.ui.Device} Device    
      */
-    function (UIComponent, Models, ResourceModel, HelloDialog ) {
+    function (UIComponent, Models, ResourceModel, HelloDialog, Device ) {
         return UIComponent.extend("logaligroup.SAPUI5.Component", {
 
             metadata: {
@@ -23,10 +25,13 @@ sap.ui.define([
                 this.setModel(Models.createRecipient());
                 //Set I18n model on the view
 
-                var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
-                this.setModel(i18nModel, "i18n");
+              //  var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
+              //  this.setModel(i18nModel, "i18n");
+              // set the device Model
+              this.setModel(Models.createDeviceModel(),"device");
 
                 this._helloDialog = new HelloDialog(this.getRootControl());
+                this.getRouter().initialize();
             },
             exit: function(){
                 this._helloDialog.destroy();
@@ -35,6 +40,16 @@ sap.ui.define([
 
             openHelloDialog: function(){
                 this._helloDialog.open();
+            },
+
+            getContentDensityClass: function(){
+                if (! Device.support.touch){
+                    this._sContentDensityClass = "SapUiSizeCompact";
+                }else{
+                    this._sContentDensityClass = "SapUiSizeCozy";
+                }
+                return this._sContentDensityClass;
             }
-        })
+
+        });
     });
