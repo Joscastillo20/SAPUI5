@@ -1,10 +1,23 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="logaligroup.Employees.controller.MainView" displayBlock="true">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+          xmlns:core="sap.ui.core"
+          controllerName="logaligroup.Employees.controller.MainView" displayBlock="true">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
 				<content>
-				    <Text xmlns="sap.m" text="Hello Word" id="text3" textAlign="End"/>
+				    <HBox >
+                    <Label id="LabelEmployee"  text="{i18n>labelEmployee}" class="sapUiSmallMargin" labelFor="inputEmployee"/>
+                    <Input id="inputEmployee" maxLength="6" width="200px" class="sapUiSmallMarginEnd" liveChange="onValidate"/>
+                    <Label id="LabelCountry"  text="{i18n>labelCountry}" class="sapUiSmallMargin" labelFor="slCountry" visible="false"/>
+                    <Select id="slCountry"  forceSelection="false" visible="false">
+                            <items>
+                            <core:Item key="US" text="{i18n>CountryUS}"/>
+                            <core:Item key="UK" text="{i18n>CountryUK}"/>
+                            <core:Item key="ES" text="{i18n>CountryES}"/>
+                            </items>
+                    </Select>
+                    </HBox>
 				</content>
 				</Page>
 			</pages>
