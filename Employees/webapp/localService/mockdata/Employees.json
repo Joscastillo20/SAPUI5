@@ -1,25 +1,10 @@
 {
-    "EmployeeId": "",
-    "CountryKey": "",
-    "ListCountry": [
-        {
-            "Key": "US",
-            "Text": "United States"
-        },
-        {
-            "Key": "UK",
-            "Text": "United Kindom"
-        },
-        {
-            "Key": "ES",
-            "Text": "Spain"
-        }
-    ],
     "Employees": [
         {
             "EmployeeID": "1",
             "LastName": "García Lopez",
             "FirstName": "María",
+            "Title":"Sales Representative",
             "Country": "ES",
             "City": "Madrid",
             "PostalCode": "28021",
@@ -40,6 +25,7 @@
             "EmployeeID": "2",
             "LastName": "Fernandez Díaz",
             "FirstName": "Pedro",
+            "Title":"Vice President, Sales",
             "Country": "ES",
             "City": "Granada",
             "PostalCode": "18008",
@@ -60,6 +46,7 @@
             "EmployeeID": "3",
             "LastName": "Davolio",
             "FirstName": "Nancy",
+            "Title":"Sales Manager",
             "Country": "US",
             "City": "Seattle",
             "PostalCode": "98052",
@@ -80,6 +67,7 @@
             "EmployeeID": "4",
             "LastName": "Peacock",
             "FirstName": "Margaret",
+            "Title":"Sales Representative",
             "Country": "US",
             "City": "Redmond",
             "PostalCode": "08025",
@@ -100,6 +88,7 @@
             "EmployeeID": "5",
             "LastName": "Buchanan",
             "FirstName": "Steven",
+            "Title":"Inside Sales Coordinator",
             "Country": "UK",
             "City": "London",
             "PostalCode": "67059",
