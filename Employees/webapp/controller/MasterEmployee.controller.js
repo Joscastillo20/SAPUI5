@@ -58,7 +58,7 @@ sap.ui.define([
 
         function showCodePostal(oEvent) {
             var itemPressed = oEvent.getSource();
-            var oContext = itemPressed.getBindingContext("jsonEmployees");
+            var oContext = itemPressed.getBindingContext("oDataNorthwind");
             var objectContext = oContext.getObject();
 
             sap.m.MessageToast.show(objectContext.PostalCode);
@@ -84,7 +84,7 @@ sap.ui.define([
             var iconPressed = oEvent.getSource();
 
             //Context from the model 
-            var oContext = iconPressed.getBindingContext("jsonEmployees");
+            var oContext = iconPressed.getBindingContext("oDataNorthwind");
 
             if (!this._oDialogOrders) {
                 this._oDialogOrders = sap.ui.xmlfragment("logaligroup.Employees.fragment.DialogOrders", this);
@@ -92,7 +92,7 @@ sap.ui.define([
 
             };
             //Dialog Binding to the context to have acccess to the data of selected item
-            this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
+            this._oDialogOrders.bindElement("oDataNorthwind>" + oContext.getPath());
 
             this._oDialogOrders.open();
 
@@ -106,7 +106,7 @@ sap.ui.define([
 
 
         function showEmployee(oEvent){
-            var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+            var path = oEvent.getSource().getBindingContext("oDataNorthwind").getPath();
             this._bus.publish("flexible","showEmployee",path);
 
         };
