@@ -1,11 +1,11 @@
 // @ts-nocheck
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "logaligroup/Employees/controller/Base.controller",
     "logaligroup/Employees/model/formatter",
     "sap/m/MessageBox"
 ],
 
-    function (Controller, formatter, MessageBox) {
+    function (Base, formatter, MessageBox) {
 
 
         function onInit() {
@@ -120,8 +120,9 @@ sap.ui.define([
             }
             context.getModel().refresh();
         };
+        
 
-        var employeedDetails = Controller.extend("logaligroup.Employees.controller.EmployeeDetails", {});
+        var employeedDetails = Base.extend("logaligroup.Employees.controller.EmployeeDetails", {});
 
         employeedDetails.prototype.onInit = onInit;
         employeedDetails.prototype.onCreateIncidence = onCreateIncidence;

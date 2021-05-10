@@ -22,7 +22,7 @@
                 </columns>
 
                 <items>
-                    <ColumnListItem >
+                    <ColumnListItem type="Navigation" press="toOrderDetails"> 
                         <cells>
                             <Label text="{oDataNorthwind>OrderID}"></Label>
                             <Label text="{oDataNorthwind>Freight}"></Label>

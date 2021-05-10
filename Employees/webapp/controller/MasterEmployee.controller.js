@@ -1,25 +1,16 @@
 // @ts-nocheck
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
+    "logaligroup/Employees/controller/Base.controller",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
-    "sap/m/ColumnListItem",
-    "sap/m/Label",
-    "sap/m/Table"
+    "sap/ui/model/FilterOperator"
 ],
 	/**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     * @param {typeof sap.ui.model.json.JSONModel} JSONModel
+     * @param {Typeof sap.ui.core.mvc.Controller} Controller
      * @param {typeof sap.ui.model.Filter} Filter
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator
-     * @param {typeof sap.m.ColumnListItem} ColumnListItem
-     * @param {typeof sap.m.Label} Label
-     * @param {typeof sap.m.Table} mTable
-     * 
      */
-    function (Controller, JSONModel, Filter, FilterOperator, ColumnListItem, Label, mTable) {
-       "use strict";
+    function ( Base , Filter, FilterOperator ) {
+        "use strict";
         function onInit() {
             this._bus = sap.ui.getCore().getEventBus();
         };
@@ -99,35 +90,21 @@ sap.ui.define([
         };
 
 
-        function onCloseOrders(){
-                this._oDialogOrders.close();
+        function onCloseOrders() {
+            this._oDialogOrders.close();
 
         };
 
 
-        function showEmployee(oEvent){
+        function showEmployee(oEvent) {
             var path = oEvent.getSource().getBindingContext("oDataNorthwind").getPath();
-            this._bus.publish("flexible","showEmployee",path);
+            this._bus.publish("flexible", "showEmployee", path);
 
         };
 
-        var Main = Controller.extend("logaligroup.Employees.controller.MasterEmployee", {});
 
-        Main.prototype.onValidate = function () {
+        var Main = Base.extend("logaligroup.Employees.controller.MasterEmployee", {});
 
-            var inputEmployee = this.byId("inputEmployee");
-            var valueEmployee = inputEmployee.getValue();
-
-            if (valueEmployee.length === 6) {
-                //  inputEmployee.setDescription("OK");
-                this.byId("LabelCountry").setVisible(true);
-                this.byId("slCountry").setVisible(true);
-            } else {
-                //  inputEmployee.setDescription("Not OK");
-                this.byId("LabelCountry").setVisible(false);
-                this.byId("slCountry").setVisible(false);
-            }
-        };
 
         Main.prototype.onInit = onInit;
         Main.prototype.onFilter = onFilter;
@@ -136,7 +113,7 @@ sap.ui.define([
         Main.prototype.onHideCity = onHideCity;
         Main.prototype.onShowCity = onShowCity;
         Main.prototype.showOrders = showOrders;
-        Main.prototype.onCloseOrders = onCloseOrders;       
-        Main.prototype.showEmployee = showEmployee; 
+        Main.prototype.onCloseOrders = onCloseOrders;
+        Main.prototype.showEmployee = showEmployee;
         return Main;
     });
