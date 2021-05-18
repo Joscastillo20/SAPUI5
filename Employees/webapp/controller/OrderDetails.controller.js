@@ -196,8 +196,7 @@ function (Controller, History, MessageBox, Filter, FilterOperator ) {
         },
         downloadFile: function(oEvent){
             const sPath = oEvent.getSource().getBindingContext("incidenceModel").getPath();
-            var p = "/sap/opu/odata/sap/YSAPUI5_SRV_01" + sPath + "/$value";
-            window.open("/sap/opu/odata/sap/YSAPUI5_SRV_01" + sPath + "/$value/");
+            window.open("sap/opu/odata/sap/YSAPUI5_SRV_01" + sPath + "/$value/");
         }     
     });
 
