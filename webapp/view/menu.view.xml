@@ -1,0 +1,58 @@
+<mvc:View
+    controllerName="PF.rrhh.controller.menu"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+<Shell id="shell">
+		<App id="app">
+    <Page id="page" title="{i18n>menu}" >
+    <content>
+ 	  <Panel headerText="{i18n>employeed}" expandable="true" expanded="true">
+       <HBox > 
+       <VBox>
+           
+             <!-- Tile Crear Empleado -->   
+       		 <GenericTile headerImage="sap-icon://add-employee"
+                class="tileLayout"
+                press="navToCreateEmployee">
+		       <TileContent footer="{i18n>headerCreateEmp}">
+		       </TileContent>
+		     </GenericTile>
+        </VBox>
+        <VBox>
+        	<OverflowToolbar id="otb2">
+            	<ToolbarSpacer/>
+            	</OverflowToolbar>    
+        </VBox>   
+             <VBox>
+               <!-- Tile Ver Empleado -->   
+       		 <GenericTile headerImage="sap-icon://employee-lookup"
+                class="tileLayout"
+                press="navToViewEmployee">
+		       <TileContent footer="{i18n>headerViewEmp}">
+		       </TileContent>
+		     </GenericTile>         
+            </VBox>
+         </HBox>
+	  </Panel>   
+     <Panel headerText="{i18n>orders}" expandable="true" expanded="true">
+       <HBox > 
+       <VBox>
+             <!-- Tile Accesos a Link de App deploy de Firmar Empleados -->   
+       		 <GenericTile id="link" headerImage="sap-icon://signature"
+                class="tileLayout" 
+                
+                url="https://8556eeb4trial-dev-logali-approuter.cfapps.us10.hana.ondemand.com/logaligroupEmployees/index.html">
+		       <TileContent footer="{i18n>headerOrder}">
+		       </TileContent>
+		     </GenericTile>            
+        </VBox>
+        </HBox>
+	 </Panel>     
+
+    </content>
+    
+    </Page>
+</App>
+</Shell>
+</mvc:View>

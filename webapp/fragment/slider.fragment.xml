@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+          	             xmlns:l="sap.ui.layout"
+                         xmlns="sap.m">    
+                                        
+                <!-- Saldo Bruto -->  
+               <Label text="{i18n>saldoBruto}"  visible="{=  ${/_Type} !== 'Autonomo'}" /> 
+	                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+		                <Slider min="{=  ${/_Type} === 'Interno'? 12000:50000}" 
+                                max="{=  ${/_Type} === 'Interno'? 80000:200000}" 
+                                step="1000" 
+                                value="{/_Salary}" 
+                                enableTickmarks="true" 
+                                width="80%"
+                                inputsAsTooltips="true" 
+                                showAdvancedTooltip="true" 
+                                visible="{=  ${/_Type} !== 'Autonomo'}"
+                                class="sapUiMediumMarginBottom">
+			                 <ResponsiveScale tickmarksBetweenLabels="100"/>
+		                </Slider>
+	                </l:VerticalLayout>
+                      
+</core:FragmentDefinition>

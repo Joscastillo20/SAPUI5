@@ -1,0 +1,11 @@
+/* Enter your custom styles here */
+.tileLayout {
+    float: left;
+    font-size: x-large;
+    font-weight: 900;
+},
+.textLayout {
+    float: left;
+    font-size: x-large;
+    font-weight: 900;
+}

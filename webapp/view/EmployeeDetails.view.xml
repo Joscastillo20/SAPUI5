@@ -1,0 +1,105 @@
+<mvc:View controllerName="PF.rrhh.controller.EmployeeDetails" 
+          xmlns:mvc="sap.ui.core.mvc"
+          displayBlock="true"
+          xmlns="sap.m"
+          xmlns:suite="sap.suite.ui.commons" class="sapUiSizeCompact"
+          xmlns:core="sap.ui.core">
+
+<NavContainer id="Nav">          
+    <Page id="p1" showHeader="false">
+
+
+                <ObjectHeader
+					icon= "{= ${odataModel>Type}==='0' ? 'sap-icon://employee-pane' : 
+                              ${odataModel>Type}==='1' ? 'sap-icon://employee' : 
+                              ${odataModel>Type}==='2' ? 'sap-icon://leads': none }"
+					title="{odataModel>FirstName} {odataModel>LastName}"
+					intro="{odataModel>Dni}"
+					class="sapUiResponsivePadding--header"
+					responsive="true">
+                        
+						<ObjectAttribute title="{i18n>dateInc}" 
+                                         text="{ path:'odataModel>CreationDate', type:'sap.ui.model.type.Date'}" />
+						<ObjectAttribute title="{i18n>tipo}" 
+                                         text="{= ${odataModel>Type} === '0' ? ${i18n>interno} : 
+                                                  ${odataModel>Type} === '1' ? ${i18n>autonomo} :
+                                                  ${odataModel>Type} ==='2' ? ${i18n>gerente} : none}" />
+						<ObjectAttribute title="{i18n>coment}" text="{odataModel>Comments}" />
+				</ObjectHeader>                
+
+				<IconTabBar
+					class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter
+							design="Horizontal"
+							icon="sap-icon://attachment"
+							text="{i18n>ficheros}">
+
+							<UploadCollection
+                                        id="UploadCollection"
+                                        maximumFilenameLength="55"
+                                        maximumFileSize="10"
+                                        multiple="true"
+                                        sameFilenameAllowed="true"
+                                        instantUpload="true"
+                                        uploadUrl="/sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments"
+                                        items="{odataModel>UserToAttachment}"
+                                        change="onFileChange"
+                                        uploadComplete="onFileUploadComplete"
+                                        beforeUploadStarts="onFileBeforeUpload"
+                                        fileDeleted="onFileDeleted"
+                                        noDataDescription="{i18n>Arrastrarficheros}">
+                                <items>
+                                    <UploadCollectionItem
+                                        documentId="{odataModel>AttId}"
+                                        visibleEdit="false"
+                                        fileName="{odataModel>DocName}"
+                                        press="downloadFile">
+                                    </UploadCollectionItem>
+                                </items>
+							</UploadCollection>
+						</IconTabFilter>
+						<IconTabFilter
+							icon="sap-icon://money-bills"
+							design="Horizontal"
+							text="{i18n>historial}">
+							<suite:Timeline
+								enableDoubleSided="false"
+								groupByType="Year"
+								groupBy="CreationDate"
+								showHeaderBar="false"
+								enableScroll="true"
+								height="100%"
+								sortOldestFirst="true"
+                                axisOrientation="Vertical"
+                                lazyLoading="true"
+								content="{odataModel>UserToSalary}">
+								<suite:content>
+									<suite:TimelineItem
+										userName="{parts:[{path:'odataModel>Ammount'},{path:'odataModel>Waers'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}}"
+										icon="sap-icon://circle-task"
+										text="{odataModel>Comments}"
+										dateTime="{odataModel>CreationDate}"
+                                        >
+									</suite:TimelineItem>
+								</suite:content>
+							</suite:Timeline>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+
+
+    				<footer>
+					<Toolbar>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button text="{i18n>darDeBaja}" press="onDeleteEmployee"></Button>
+						<Button text="{i18n>ascender}" press="onRiseEmployee"></Button>
+					</Toolbar>
+				</footer>
+
+    </Page>
+
+</NavContainer> 
+</mvc:View>

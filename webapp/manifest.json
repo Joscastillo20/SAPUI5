@@ -1,0 +1,147 @@
+{
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "PF.rrhh",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "ach": "ach"
+    ,
+    "dataSources": {
+    "ZEMPLOYEES_SRV": {
+        "uri": "/sap/opu/odata/sap/ZEMPLOYEES_SRV/",
+        "type": "OData",
+        "settings": {
+        "odataVersion": "2.0",
+        "localUri": "localService/metadata.xml"
+        }
+        }
+  }    
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://task",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "PF.rrhh.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    },
+    "dependencies": {
+      "minUI5Version": "1.66.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "PF.rrhh.i18n.i18n"
+        }
+      },
+      "odataModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZEMPLOYEES_SRV",
+                "preload": true
+            }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "PF.rrhh.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": true
+      },
+      "routes": [
+        {
+          "name": "menu",
+          "pattern": "",
+          "target": ["menu"]
+        },
+        {
+          "name": "EmployeeCreate",
+          "pattern": "EmployeeCreate",
+          "target": ["EmployeeCreate"]
+        },
+                {
+          "name": "EmployeeView",
+          "pattern": "EmployeeView",
+          "target": ["EmployeeView"]
+        }
+        
+      ],
+      "targets": {
+        "menu": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "menu",
+          "viewName": "menu"
+        },
+        "EmployeeCreate": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "EmployeeCreate",
+          "viewName": "EmployeeCreate"
+
+      },
+        "App": {
+          "viewType": "XML",
+          "viewName": "App"
+      },      
+        "EmployeeView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "EmployeeView",
+          "viewName": "EmployeeView"
+
+      }      
+    }
+  }
+}
+}

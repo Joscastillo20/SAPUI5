@@ -1,0 +1,40 @@
+<mvc:View controllerName="PF.rrhh.controller.MasterEmployee" 
+          xmlns:mvc="sap.ui.core.mvc" 
+          xmlns="sap.m" 
+          displayBlock="false">
+
+  <!--
+Panel A container control which has a header and content.
+When to use:
+You need to group or display information and want to give users the option of hiding this information.
+A panel consists of a title bar with a header text or header toolbar, an info toolbar (optional), and
+a content area. Using the headerToolbar aggregation, you can add a toolbar with any toolbar content 
+(i.e. custom buttons, spacers, titles) inside the title bar.
+SearchField An input field to search for a specific item.9
+ --> 
+ <Panel>
+        <headerToolbar >
+            <Toolbar class="sapUiLargeMarginBottom">
+                <Button icon="sap-icon://nav-back" press="onBack"></Button>
+                <ToolbarSpacer />
+                <SearchField width="100%" 
+                             search=".onFilter"
+                             showRefreshButton="true"
+                             placeholder="{i18n>searchFieldPlaceHolder}"/>
+            </Toolbar>
+        </headerToolbar>  
+
+          <!-- Listado de Empleados asociados a SAPID  
+          The List control provides a container for all types of list items
+          sap.m.StandardListItem is a list item providing the most common use cases, e.g. image, title and description
+          -->   
+
+        <List id="list"		items="{odataModel>/Users}">
+			<StandardListItem id="listItem"
+				              title="{odataModel>LastName}, {odataModel>FirstName}"
+				              description="{odataModel>Dni}"
+                              type="Navigation"  
+                              press="showDetails"/>
+		</List> 
+</Panel>
+</mvc:View>

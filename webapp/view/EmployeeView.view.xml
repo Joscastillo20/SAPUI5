@@ -1,0 +1,31 @@
+<mvc:View controllerName="PF.rrhh.controller.EmployeeView"
+          xmlns:mvc="sap.ui.core.mvc"
+          displayBlock="true"
+          xmlns="sap.m"
+          xmlns:f="sap.f">
+        <!--The sap.m.Page is a container control that holds one whole screen of an application. 
+        The page has three distinct areas that can hold content - a header, content area and a footer.  -->  
+        <Page title="{i18n>menu}">
+             <content>
+             <!--Implements the master-detail-detail paradigm by displaying up to three pages in separate columns.
+             The control is logically similar to sap.m.SplitContainer with the difference that it capable of handling 
+             three columns (referred to as Begin, Mid and End) rather than two (Master, Detail). The width of the three columns is variable.
+              Show Employee list and details by side
+              --> 
+                <f:FlexibleColumnLayout id="fcl" backgroundDesign="Transparent" layout="TwoColumnsMidExpanded">
+                    <f:beginColumnPages>
+                    <!-- List Employee--> 
+                       <mvc:XMLView id="masterEmployeeView" 
+                                    viewName="PF.rrhh.view.MasterEmployee"></mvc:XMLView>
+                    </f:beginColumnPages>    
+                    <f:midColumnPages>
+                     <!-- Delete / Rise  Employee--> 
+                       <mvc:XMLView id="EmployeeDetailsView" 
+                                    viewName="PF.rrhh.view.EmployeeDetails"></mvc:XMLView>                            
+                    </f:midColumnPages>
+                    <f:endColumnPages>
+                   </f:endColumnPages>
+                   </f:FlexibleColumnLayout>
+             </content>
+          </Page>
+</mvc:View>    
