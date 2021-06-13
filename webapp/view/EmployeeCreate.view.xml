@@ -15,7 +15,7 @@
 				
 	<Wizard
 		id="wizard"
-        finishButtonText="Revisar"
+        finishButtonText="{i18n>revisar}"
         complete="wizardCompletedHandler"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
 

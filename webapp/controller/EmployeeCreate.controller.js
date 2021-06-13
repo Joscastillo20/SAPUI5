@@ -137,29 +137,49 @@ sap.ui.define([
 
             //DNI
             name = object.Dni;
-             if (object._Type !== "Autonomo"){
-            if (name !== 'undefined') {
-                if (!name) {//dni 
-                    if (this._model.getProperty("/_visibleDni")) {
-                        this._model.setProperty("/_dni", "Error");//valueState  en campo input
-                        isValid = false;
+            if (object._Type !== "Autonomo") {
+                if (name !== 'undefined') {
+                    if (!name) {//dni 
+                        if (this._model.getProperty("/_visibleDni")) {
+                            this._model.setProperty("/_dni", "Error");//valueState  en campo input
+                            isValid = false;
+                        }
+                    } else {
+
+                        this.validateDNI(oEvent);
+                        var msg = this._model.getProperty("/_dni");
+                        isValid = true;
+                        if (msg === 'Error') {
+                            isValid = false;
+
+                        }
                     }
-                } else {
-                    this.validateDNI(oEvent);
-                    var msg = this._model.getProperty("/_dni");
-                    isValid = true;
-                    if (msg === 'Error') {
-                        isValid = false;
-                    }
-                    //this._model.setProperty("/_dni", "None");//valueState  en campo input
+
+                }
+                else {
+                    isValid = false;
                 }
 
             }
-            else {
-                isValid = false;
-            }
-        }
 
+            //CFI
+            name = object._Dni;
+            if (object._Type === "Autonomo") {
+                if (name !== 'undefined') {
+                    if (!name) {//cfi
+                        this._model.setProperty("/_cfi", "Error");//valueState  en campo input
+                        isValid = false;
+                    } else {
+                        this._model.setProperty("/_cfi", "None");//valueState  en campo input
+                        isValid = true;
+                    }
+
+                }
+                else {
+                    isValid = false;
+                }
+
+            }
             //Fecha 
             name = object.CreationDate;
             if (name !== 'undefined') {
@@ -206,16 +226,16 @@ sap.ui.define([
                     letterList = "TRWAGMYFPDXBNJZSQVHLCKET";
                     letterList = letterList.substring(number, number + 1);
                     if (letterList !== letter.toUpperCase()) {
-                        // this._model.setProperty("/dni","");
+
                         this._model.setProperty("/_dni", "Error");
                     } else {
                         this._model.setProperty("/_dni", "None");
                     }
                 } else {
-                    // this._model.setProperty("/dni","");
+
                     this._model.setProperty("/_dni", "Error");
                 }
-                // this.validateEmployeeStep();
+
             }
         };
         //Retornar al menú Principal 
@@ -249,10 +269,10 @@ sap.ui.define([
         };
         //La clave del slug se construye con el SapId declarado en el component  
         function onFileBeforeUpload(oEvent) {
-           
+
             let oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
                 name: "slug",
-                value: this.getOwnerComponent().SapId+";"+this.newUser+";"+oEvent.getParameter("fileName")
+                value: this.getOwnerComponent().SapId + ";" + this.newUser + ";" + oEvent.getParameter("fileName")
 
             });
             oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
@@ -332,7 +352,9 @@ sap.ui.define([
                         //Se obtiene el conjuntos de routers del programa
                         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                         //Se navega hacia el router "menu"
-                        oRouter.navTo("menu", {}, true);
+                        var wizardNavContainer = this.byId("wizardNavContainer");
+                        wizardNavContainer.to(this.byId("wizardContentPage"));
+                        oRouter.navTo("menu", true);
                     }
                 }.bind(this)
             });
@@ -438,7 +460,7 @@ sap.ui.define([
         Main.prototype.wizardCompletedHandler = wizardCompletedHandler;
         Main.prototype.validateDNI = validateDNI;
         Main.prototype.onFileChange = onFileChange;
-        Main.prototype.onFileBeforeUpload=onFileBeforeUpload;        
+        Main.prototype.onFileBeforeUpload = onFileBeforeUpload;
         Main.prototype.onFileUploadComplete = onFileUploadComplete;
         Main.prototype.downloadFile = downloadFile;
         Main.prototype.onStartUpload = onStartUpload;
