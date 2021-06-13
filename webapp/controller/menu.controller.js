@@ -10,6 +10,7 @@ sap.ui.define([
         function onInit() {
             //llamada compartida desde el controller de la vista EmployeeDetailsView
             this._bus = sap.ui.getCore().getEventBus();
+      
         };
 
         function onAfterRendering() {

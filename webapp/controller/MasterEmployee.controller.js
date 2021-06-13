@@ -12,10 +12,9 @@ sap.ui.define([
         "use strict";
 
         function onInit() {
-
+            
             this._bus = sap.ui.getCore().getEventBus();
 
-            this._splitAppEmployee = this.byId("splitAppEmployee");
             const aFilter = [];
 //Establece filtro inicial para que solo se lean datos correspondientes a el SAPID que esta configurado en el Component.js
             aFilter.push(new Filter("SapId", "EQ", this.getOwnerComponent().SapId));
@@ -25,7 +24,7 @@ sap.ui.define([
                 oBinding.filter(aFilter);
             })
         };
-
+//Regresar a Menu Principal
         function onBack() {
             var oHistory = History.getInstance();
             var sPreviousHash = oHistory.getPreviousHash();
@@ -39,28 +38,9 @@ sap.ui.define([
             }
         };
 
-
-
-        function onReadODataIncidence(employeeID) {
-            this.getView().getModel("odataModel").read("/Users", {
-                filters: [
-
-                    new sap.ui.model.Filter("EmployeeId", "EQ", employeeID.toString()),
-                    new sap.ui.model.Filter("SapId", "EQ", this.getOwnerComponent().SapId)
-                ],
-                success: function (data) {
-                    var dataModel = this._detailEmployeeView.getModel("odataModel");
-                    dataModel.setData(data.results);
-
-                }.bind(this),
-                error: function (e) {
-
-                }
-            });
-        }
-
+//Filtra listado de empleados según datos completado de nombre por la interfaz
+//mostrando siempre los relacionados con el SAPID
         function onFilter(oEvent) {
-
             const aFilter = [];
             const sQuery = oEvent.getParameter("query");
 
@@ -74,22 +54,27 @@ sap.ui.define([
             const oBinding = oList.getBinding("items");
 
             oBinding.filter(aFilter);
-
+            this.showDetails(oEvent);
         };
-        
+    //este evento lo dispara la Vista MasterEmployee que es llamada de la vista principal EmployeeView que es la que tiene los datos  
+    //es necesario  en el onInit completar this._bus = sap.ui.getCore().getEventBus(); 
+    //The SAPUI5 EventBus lets you share methods across controllers.
         function showDetails(oEvent) {
-
             var oSelectedItem = oEvent.getSource();
             var oContext = oSelectedItem.getBindingContext("odataModel");
-            var sPath = oContext.getPath();
-            this._bus.publish("flexible", "showDetails", sPath);
+            if (oContext !== undefined)
+            {
+                 var sPath = oContext.getPath();
+                 this._bus.publish("flexible", "showDetails", sPath);
+            }
+            else
+             this._bus.publish("flexible", "showDetails", sPath);
+
         };
 
         var Main = Controller.extend("PF.rrhh.controller.MasterEmployee", {});
         Main.prototype.onInit = onInit;
         Main.prototype.onFilter = onFilter;
-        Main.prototype.onReadODataIncidence = onReadODataIncidence;
         Main.prototype.showDetails = showDetails;
-
         Main.prototype.onBack = onBack;
     });

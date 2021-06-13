@@ -7,7 +7,12 @@
 
 <NavContainer id="Nav">          
     <Page id="p1" showHeader="false">
-
+               <Panel  height="100%" visible="{= ${odataModel>Type}!=='0'  &amp;&amp; ${odataModel>Type}!=='1'  &amp;&amp; ${odataModel>Type}!=='2'}">
+               				<FlexBox alignItems="Center" justifyContent="Center" height="100%">
+					<Text text="{i18n>seleccioneEmpleado}"></Text>
+				</FlexBox>
+               </Panel>
+               <Panel  visible="{= ${odataModel>Type}==='0' || ${odataModel>Type}==='1' || ${odataModel>Type}==='2'}">
 
                 <ObjectHeader
 					icon= "{= ${odataModel>Type}==='0' ? 'sap-icon://employee-pane' : 
@@ -89,10 +94,10 @@
 						</IconTabFilter>
 					</items>
 				</IconTabBar>
-
+    </Panel>
 
     				<footer>
-					<Toolbar>
+					<Toolbar id="tool" visible="{= ${odataModel>Type}==='0' || ${odataModel>Type}==='1' || ${odataModel>Type}==='2'}">
 						<ToolbarSpacer></ToolbarSpacer>
 						<Button text="{i18n>darDeBaja}" press="onDeleteEmployee"></Button>
 						<Button text="{i18n>ascender}" press="onRiseEmployee"></Button>

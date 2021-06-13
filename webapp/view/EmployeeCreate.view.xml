@@ -90,7 +90,7 @@
                         width="50%"
                         liveChange="validateEmployeeStep"
                         valueLiveUpdate="true"
-                        visible="{/_visibleDni}"
+                        visible="{=  ${/_Type} !== 'Autonomo'}"
                         value="{/Dni}"
                         placeholder="{i18n>dni}"
                         showValueStateMessage="false"
@@ -98,7 +98,7 @@
                  <!-- CFI visible solo para tipo = Autonomo -->   
 				<Label text="{i18n>cfi}" required="true"/>
 				<Input  id="cfi"
-                        visible="{/_visibleCfi}"
+                        visible="{=  ${/_Type} === 'Autonomo'}"
                         valueLiveUpdate="true"
 			            liveChange="validateEmployeeStep"
                         value="{/_Dni}"

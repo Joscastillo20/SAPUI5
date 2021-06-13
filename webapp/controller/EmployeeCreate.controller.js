@@ -137,6 +137,7 @@ sap.ui.define([
 
             //DNI
             name = object.Dni;
+             if (object._Type !== "Autonomo"){
             if (name !== 'undefined') {
                 if (!name) {//dni 
                     if (this._model.getProperty("/_visibleDni")) {
@@ -157,6 +158,7 @@ sap.ui.define([
             else {
                 isValid = false;
             }
+        }
 
             //Fecha 
             name = object.CreationDate;

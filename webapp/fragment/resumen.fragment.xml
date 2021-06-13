@@ -6,7 +6,7 @@
 				layout="ResponsiveGridLayout">
 			<form:content>
 				<Label text="{i18n>tipo}"/>
-				<Text text="{=${/_type} === 'interno' ? ${i18n>interno} : ${/_type} === 'autonomo' ? ${i18n>autonomo} : ${i18n>gerente}}"/>
+				<Text text="{=${/_Type} === 'Interno' ? ${i18n>interno} : ${/_Type} === 'Autonomo' ? ${i18n>auto} : ${i18n>gerente}}"/>
 				<Link press="editStepOne" text="{i18n>editar}" />
 			</form:content>
 		</form:SimpleForm>
@@ -21,9 +21,9 @@
 				<Text text="{/FirstName}"/>
 				<Label text="{i18n>lastName}"/>
 				<Text text="{/LastName}"/>
-				<Label text="{= ${/_type} === 'autonomo' ? ${i18n>CIF} : ${i18n>DNI}}"/>
-				<Text  text="{/Dni}"/>
-				<Label text="{= ${/_type} === 'autonomo' ? ${i18n>precioDiario} : ${i18n>saldoBruto}}"/>
+				<Label text="{= ${/_Type} === 'Autonomo' ? ${i18n>CIF} : ${i18n>DNI}}"/>
+				<Text  text="{/_Dni}"/>
+				<Label text="{= ${/_Type} === 'Autonomo' ? ${i18n>precioDiario} : ${i18n>saldoBruto}}"/>
 				<Text  text="{/_Salary}"/>
 				<Label text="{i18n>dateInc}"/>
 				<Text  text="{path:'/CreationDate',type:'sap.ui.model.type.Date'}"/>

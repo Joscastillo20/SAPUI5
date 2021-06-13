@@ -8,11 +8,16 @@ sap.ui.define([
         "use strict";
 
         function onInit() {
-            //llamada compartida desde el controller de la vista EmployeeDetailsView
-            //       this._bus = sap.ui.getCore().getEventBus();
-            //      this._bus.subscribe("flexible", "onDeleteEmployee", this.onDeleteEmployee, this);
+         this._bus = sap.ui.getCore().getEventBus();   
 
         };
+ 
+
+        function onAfterRendering() {
+
+        };
+
+    //Eliminar Empleado    
         function onDeleteEmployee(oEvent) {
 
             //Se muestra un mensaje de confirmación
@@ -65,7 +70,7 @@ sap.ui.define([
             var newRise = this.riseDialog.getModel("newRise");
             //Se obtiene los datos
             var odata = newRise.getData();
-            //Se prepara la informacion para enviar a sap y se agrega el campo sapId con el id del alumno y el id del empleado
+            //Se prepara la informacion para enviar a sap y se agrega el campo sapId con el id del component y el id del empleado
             var body = {
                 Ammount: odata.Ammount,
                 CreationDate: odata.CreationDate,
@@ -149,6 +154,5 @@ sap.ui.define([
         Main.prototype.onFileBeforeUpload=onFileBeforeUpload;        
         Main.prototype.onFileUploadComplete = onFileUploadComplete;
         Main.prototype.downloadFile = downloadFile;
-
-
+        Main.prototype.onAfterRendering = onAfterRendering;
     });
