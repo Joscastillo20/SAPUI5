@@ -1,0 +1,70 @@
+_schema-version: '3.2'
+ID: MTA_PROJECT
+version: 0.0.1
+modules:
+  - name: mta-project-approuter
+    type: approuter.nodejs
+    path: mta-project-approuter
+    requires:
+      - name: MTA_PROJECT_html_repo_runtime
+      - name: uaa_MTA_PROJECT
+      - name: dest_MTA_PROJECT      
+      - name: conn_MTA_PROJECT
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+  - name: MTA_PROJECT-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: MTA_PROJECT-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - PFrrhh4.zip
+          name: PFrrhh4
+          target-path: resources/
+  - name: PFrrhh4
+    type: html5
+    path: rrhh4
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - 'npm run build:cf'
+      supported-platforms: []
+resources:
+  - name: MTA_PROJECT_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: uaa_MTA_PROJECT
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: MTA_PROJECT-xsuaa-service
+      service-plan: application
+  - name: MTA_PROJECT-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: MTA_PROJECT-html5-srv
+      service-plan: app-host
+  - name: conn_MTA_PROJECT
+    parameters:
+      service-plan: lite
+      service: connectivity
+    type: org.cloudfoundry.managed-service
+  - name: dest_MTA_PROJECT
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service    
+parameters:
+  deploy_mode: html5-repo

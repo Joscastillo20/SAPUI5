@@ -1,0 +1,86 @@
+{
+  "inputs": [
+    {
+      "id": "UI5Version",
+      "type": "command",
+      "command": "sap.ux.appGenerator.ui5Version"
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Start rrhh4",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "cwd": "${workspaceFolder}/rrhh4",
+      "windows": {
+        "runtimeExecutable": "npm.cmd",
+        "args": [
+          "--",
+          "--ui5",
+          "--backendConfig",
+          "\"[{\\\"path\\\":\\\"/sap\\\",\\\"destination\\\":\\\"logaligroupERP\\\"}]\""
+        ]
+      },
+      "runtimeArgs": [
+        "run-script",
+        "start"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "DEBUG": "--inspect",
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/MTA_PROJECT/rrhh4\"}"
+      },
+      "args": [
+        "--",
+        "--ui5",
+        "--backendConfig",
+        "[{\"path\":\"/sap\",\"destination\":\"logaligroupERP\"}]"
+      ]
+    },
+    {
+      "name": "Start rrhh4 Mock",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/rrhh4",
+      "runtimeExecutable": "npm",
+      "windows": {
+        "runtimeExecutable": "npm.cmd"
+      },
+      "runtimeArgs": [
+        "run-script",
+        "start-mock"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/MTA_PROJECT/rrhh4\"}"
+      }
+    },
+    {
+      "name": "Start rrhh4 Local",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/rrhh4",
+      "runtimeExecutable": "npm",
+      "windows": {
+        "runtimeExecutable": "npm.cmd"
+      },
+      "runtimeArgs": [
+        "run-script",
+        "start-local"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/MTA_PROJECT/rrhh4\"}"
+      }
+    }
+  ],
+  "compounds": [],
+  "version": "0.2.0"
+}

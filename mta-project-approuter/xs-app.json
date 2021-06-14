@@ -1,0 +1,18 @@
+{
+    "welcomeFile": "PFrrhh4",
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "authenticationType": "none",
+            "csrfProtection": true,
+            "source": "^/sap/opu/odata/sap/YSAPUI5_SRV_01/(.*)$",
+            "destination": "logaligroupERP"
+        },
+        {
+            "source": "^(.*)$",
+            "target": "$1",
+            "service": "html5-apps-repo-rt",
+            "authenticationType": "xsuaa"
+        }
+    ]
+}
