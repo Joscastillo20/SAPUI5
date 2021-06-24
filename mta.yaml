@@ -68,3 +68,4 @@ resources:
     type: org.cloudfoundry.managed-service    
 parameters:
   deploy_mode: html5-repo
+
